@@ -1,0 +1,51 @@
+# Compiled class files
+*.class
+
+# Logs
+*.log
+
+# Dependency directories
+target/
+build/
+
+# IDE-specific files
+*.idea/
+*.project
+*.classpath
+*.settings/
+
+# Maven specific
+.mvn/
+!mvnw
+!mvnw.cmd
+
+# Gradle specific
+.gradle/
+build/
+
+# Eclipse specific
+.project
+.classpath
+.settings/
+
+# IntelliJ IDEA specific
+*.iml
+*.iws
+*.ipr
+out/
+
+# NetBeans specific
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Sensitive data
+*.env
+*.key
