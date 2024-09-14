@@ -1,0 +1,119 @@
+package User;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class RagisterUser {
+	public static void main(String[] args) {
+		RagisterUser ru = new RagisterUser();
+		ru.ragisterUser("a", "b", "c", "d");
+//		ru.login("c","d");
+//		ru.deleteUser(1);
+//		ru.updateUser("x", "b", "c", "d", 0);
+	}
+
+	static final String DB_URL = "jdbc:mysql://localhost:3306/user";
+	static final String USER = "root";
+	static final String PASS = "root";
+
+	public void ragisterUser(String name, String mobile, String email, String password) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String query = "insert into user_data (name,mobile,email,password) values (?,?,?,?)";
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			con = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			ps = con.prepareStatement(query);
+
+			 ps.setString(1, name);  
+	            ps.setString(2, mobile); 
+	            ps.setString(3, password);  
+	            ps.setString(4, email); 
+
+			ps.executeUpdate();
+			System.out.println("done");
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+	}
+
+	public void login(String email, String password) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String query = "SELECT * FROM user_data WHERE email = ? AND password = ?";
+		try { 
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+
+	        con = DriverManager.getConnection(DB_URL, USER, PASS);
+
+	        ps = con.prepareStatement(query);
+	        
+	       ps.setString(1, email); 
+	        ps.setString(2, password);  
+
+	        ResultSet rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            System.out.println("Login successful for user: " + rs.getString("name")+" "+rs.getString("password")+" "+rs.getString("email")+" "+rs.getString("mobile")+" "+rs.getInt("id"));
+	        } else {
+	            System.out.println("Login failed. Invalid email or password.");
+	        }} catch (Exception e) {
+	        	 System.out.println("An error occurred: " + e.getMessage());
+	             e.printStackTrace();
+		}
+	}
+	
+	public void deleteUser(int id)
+	{
+		Connection con = null;
+		PreparedStatement ps = null;
+		String query = "delete FROM user_data WHERE id="+id;
+		try { 
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+
+	        con = DriverManager.getConnection(DB_URL, USER, PASS);
+
+	        ps = con.prepareStatement(query);
+	        
+	        ps.executeUpdate();
+			System.out.println("done");
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}	
+	}
+	
+	public void updateUser(String name, String mobile, String email, String password,int id)
+	{
+		Connection con = null;
+		PreparedStatement ps = null;
+		String query = "UPDATE employ SET name = ?, email = ?,password=?, mobile =?  WHERE id = ?";
+		try { 
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+
+	        con = DriverManager.getConnection(DB_URL, USER, PASS);
+
+	        ps = con.prepareStatement(query);
+	        
+	        ps.setString(1, name);  
+            ps.setString(2, mobile); 
+            ps.setString(3, password);  
+            ps.setString(4, email);  
+	        
+	        ps.executeUpdate();
+	        
+			System.out.println("done");
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}	
+	}
+}
+
+

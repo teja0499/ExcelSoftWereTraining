@@ -1,0 +1,33 @@
+package demooo;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+public class driver {
+	 static final String DB_URL = "jdbc:mysql://localhost:3306/TestDB";
+	    static final String USER = "root";
+	    static final String PASS = "password";
+public static void main(String[] args) {
+	
+	String query="insert into emp (name,id,un) values (Tejas,12,ABC)";
+	try {System.out.println(1);
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		System.out.println(2);
+		Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+          System.out.println("Connected to the database!");
+          
+          PreparedStatement stmt = conn.prepareStatement(query);
+          
+          stmt.setString(1, "John Doe");
+          stmt.setInt(2, 1);
+          stmt.setString(3, "john.doe@example.com");
+          
+          stmt.executeUpdate();
+          System.out.println("Inserted record into the table!");
+	} catch (Exception e) {
+		// TODO: handle exception
+		System.out.println(e);
+	}
+}
+}
