@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+
+	<package name="abcd" extends="struts-default , json-default">
+		<action name="loginForm" class="register.Register"
+			method="register">
+			<result name="success">login.jsp</result>
+		</action>
+
+		<action name="getalluser" class="register.Login" method="login">
+			<result name="success">allUser.jsp</result>
+		</action>
+
+		<action name="viewAll" class="register.Get" method="getAll">
+			<result name="success">allUser.jsp</result>
+		</action>
+
+		<action name="deleteUser" class="register.DeleteUser"
+			method="deleteUser">
+			<result name="success">allUser.jsp</result>
+		</action>
+
+		<action name="editUser" class="register.EditUser"
+			method="editUser">
+			<result name="success">update.jsp</result>
+		</action>
+
+		<action name="updateUser" class="register.Update"
+			method="updateUser">
+			<result name="success">allUser.jsp</result>
+		</action>
+
+		<action name="back">
+			<result>index.jsp</result>
+		</action>
+
+
+
+		<action name="viewAll" class="register.GetAllUsers"
+			method="getAllUsers">
+			<result name="success">allUser.jsp</result>
+		</action>
+		
+		<action name="search" class="register.SearchFunction"
+			method="search">
+			<result name="success" type="json"></result>
+		</action>
+
+
+
+
+	</package>
+</struts>
