@@ -1,0 +1,27 @@
+package org.jsp;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;  // Import XSSFWorkbook for .xlsx files
+import org.apache.poi.ss.usermodel.Workbook;
+
+public class P1 {
+    
+
+    public static void main(String[] args) throws IOException {
+        
+        Workbook wb = new XSSFWorkbook();  
+
+        OutputStream fileOut = new FileOutputStream("C:\\Users\\canncopierservicepvt\\Desktop\\Excel files\\demo.xlsx");
+        
+        wb.write(fileOut);
+      
+        fileOut.close();
+       
+
+        
+        System.out.println("Excel File has been created successfully.");
+    }
+}

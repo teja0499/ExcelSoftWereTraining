@@ -1,0 +1,88 @@
+package org.jsp;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.List;
+import org.apache.poi.ss.usermodel.*;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+
+public class P2 {
+	public static void main(String[] args) throws IOException {
+		List<Student>stu;
+		Workbook wb=new HSSFWorkbook();
+		
+		Sheet sheet=wb.createSheet();
+		
+		 Font boldFont = wb.createFont();
+	        boldFont.setBoldweight((short) 10.5);
+		 CellStyle boldStyle = wb.createCellStyle();
+	        boldStyle.setFont(boldFont);
+
+		  Row headerRow = sheet.createRow(0);
+
+	        Cell idHeader = headerRow.createCell(0);
+	        idHeader.setCellValue("ID");
+	        idHeader.setCellStyle(boldStyle);
+
+	        Cell nameHeader = headerRow.createCell(1);
+	        nameHeader.setCellValue("Name");
+	        nameHeader.setCellStyle(boldStyle);
+
+	        Cell mobileHeader = headerRow.createCell(2);
+	        mobileHeader.setCellValue("Mobile");
+	        mobileHeader.setCellStyle(boldStyle);
+		
+		
+		int i=1;
+		for(char c='a';i<=26;i++,c++)
+		{
+			Student s=new Student(i+1,c+""+c, i+100);
+			 row=sheet.createRow(i);
+			Cell id=row.createCell(0);
+			id.setCellValue(s.id);
+
+			Cell name=row.createCell(1);
+			name.setCellValue(s.name);
+			
+			Cell mobile=row.createCell(2);
+			mobile.setCellValue(s.mobile);
+			System.out.println(s);
+		}
+		
+		 try (FileOutputStream fileOut = new FileOutputStream("C:\\Users\\canncopierservicepvt\\Desktop\\Excel files\\Student.xls")) {
+	            wb.write(fileOut); 
+	            System.out.println("Excel file has been created successfully.");
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+
+		
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------");
+		
+		resdData();
+		
+}
+	public static void resdData() throws IOException
+	{
+		FileInputStream fis=new FileInputStream("C:\\Users\\canncopierservicepvt\\Desktop\\Excel files\\ Student.xls");
+		Workbook wb=new HSSFWorkbook(fis);
+		for(int i=0;i<26;i++)
+		{
+			Sheet sheet=wb.getSheetAt(0);  
+			int id= (int) sheet.getRow(i).getCell(0).getNumericCellValue();
+
+
+			em.out.println("ID = "+id +" Name = "+Name+" Mobile = "+mobile);
+//			System.out.println(id);
+		}
+		fis.close();
+	}
+}

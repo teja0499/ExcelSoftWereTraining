@@ -1,0 +1,44 @@
+package register;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.ServletContext;
+
+import org.apache.struts2.ServletActionContext;
+
+public class GetAllUsers {
+	private List<User> users;
+
+	public List<User> getUsers() {
+		System.out.println(3333);
+		
+		Get get=new Get();
+		return get.getAll();
+		
+	}
+
+	public void setUsers(List<User> users) {
+		System.out.println(111111);
+		this.users = users;
+	}
+	
+	public String getAllUsers() throws ParseException
+	{
+		System.out.println(222222);
+		formatDate("");
+		
+		return "success";
+	}
+	
+	public String formatDate(String date) throws ParseException {
+//		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+//		String formattedDate = myDateObj.format(myFormatObj); 
+		Date str=new SimpleDateFormat("MM/dd/yyyy").parse("09/24/2024"); 
+		System.out.println(LocalDate.parse("09/24/2024"));
+		 return "";
+	}
+}

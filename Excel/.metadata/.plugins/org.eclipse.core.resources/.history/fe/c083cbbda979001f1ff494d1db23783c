@@ -1,0 +1,35 @@
+package org.jsp;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.List;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+
+public class P2 {
+	public static void main(String[] args) throws IOException {
+		List<Student>stu;
+		Workbook wb=new HSSFWorkbook();
+		
+		Sheet sheet=wb.createSheet();
+		
+		
+		
+		
+		int i=0;
+		for(char c='a';i<27;i++,c++)
+		{
+			Student s=new Student(i,c+""+c, i+100);
+			Row row=wb.cre
+		}
+		
+		OutputStream fileOut = new FileOutputStream("C:\\Users\\canncopierservicepvt\\Desktop\\Excel files\\ Student.xlsx");
+		System.out.println("Excel File has been created successfully.");   
+		wb.write(fileOut);   
+}
+}

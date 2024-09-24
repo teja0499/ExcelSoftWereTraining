@@ -1,0 +1,60 @@
+package org.jsp;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.List;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+
+public class P2 {
+	public static void main(String[] args) throws IOException {
+		List<Student>stu;
+		Workbook wb=new HSSFWorkbook();
+		
+		Sheet sheet=wb.createSheet();
+		
+		
+		
+		
+		int i=0;
+		for(char c='a';i<26;i++,c++)
+		{
+			Student s=new Student(i+1,c+""+c, i+100);
+			Row row=sheet.createRow(i);
+			Cell id=row.createCell(0);
+			id.setCellValue(s.id);
+
+			Cell name=row.createCell(1);
+			name.setCellValue(s.name);
+			
+			Cell mobile=row.createCell(2);
+			mobile.setCellValue(s.mobile);
+			System.out.println(s);
+		}
+		
+		OutputStream fileOut = new FileOutputStream("C:\\Users\\canncopierservicepvt\\Desktop\\Excel files\\ Student.xls");
+		System.out.println("Excel File has been created successfully.");   
+		wb.write(fileOut);   
+		
+}
+	public void resdData() throws IOException
+	{
+		FileInputStream fis=new FileInputStream("C:\\Users\\canncopierservicepvt\\Desktop\\Excel files\\ Student.xls");
+		Workbook wb=new HSSFWorkbook(fis);
+		for(int i=0;i<26;i++)
+		{
+			Sheet sheet=wb.getSheetAt(i);  
+			String id=sheet.getRow(i).getCell(0).getStringCellValue();
+			String Name=sheet.getRow(i).getCell(1).getStringCellValue();
+			String mobile=sheet.getRow(i).getCell(2).getStringCellValue();
+			System.out.println("ID = "+id +" Name = "+Name+" Mobile = "+mobile);
+		}
+	}
+}

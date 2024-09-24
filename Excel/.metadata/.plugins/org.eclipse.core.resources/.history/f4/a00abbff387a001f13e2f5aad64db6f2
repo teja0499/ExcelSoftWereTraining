@@ -1,0 +1,18 @@
+package register;
+
+import java.util.List;
+
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
+
+public class Genrate_ExcelFile {
+	private List<User> users;
+	public void genrateExcel()
+	{
+		Get allUser=new Get();
+		users=allUser.getAll();
+		String Header[]= {"ID" , " Name" , "Email" , "Mobile" , "DOB" , "Gender" , "Qualification" , "Password"};
+		Workbook workbook = new HSSFWorkbook();
+		
+	}
+}

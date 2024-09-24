@@ -1,0 +1,103 @@
+package register;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
+import java.util.Random;
+
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+
+public class Genrate_ExcelFile {
+
+	private String excelLink;
+	
+	public String getExcelLink() {
+		System.out.println(excelLink);
+		return excelLink;
+	}
+
+	public void setExcelLink(String excelLink) {
+		this.excelLink = excelLink;
+	}
+
+
+
+
+	
+
+	
+
+//	public void genrateExcel(List<User> users);
+	public String genrateExcel() {
+		System.out.println("Genrate_ExcelFile start");
+		Get allUser = new Get();
+		List<User> users = allUser.getAll();
+		String Header[] = { "ID", " Name", "Email", "Mobile", "DOB", "Gender", "Qualification", "Password" };
+		Workbook workbook = new HSSFWorkbook();
+
+		CellStyle headerStyle = workbook.createCellStyle();
+		Font font = workbook.createFont();
+		font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+		headerStyle.setFont(font);
+
+		headerStyle.setFillForegroundColor(HSSFColor.BRIGHT_GREEN.index);
+		headerStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+
+		headerStyle.setBorderTop(CellStyle.BORDER_THICK);
+		headerStyle.setBorderBottom(CellStyle.BORDER_THICK);
+		headerStyle.setBorderLeft(CellStyle.BORDER_THICK);
+		headerStyle.setBorderRight(CellStyle.BORDER_THICK);
+
+		Sheet sheet = workbook.createSheet();
+		Row row = sheet.createRow(0);
+		sheet.createFreezePane(0, 1);
+		
+		
+		for (int i = 0; i < Header.length; i++) {
+			Cell cell = row.createCell(i);
+			cell.setCellValue(Header[i]);
+			cell.setCellStyle(headerStyle);
+		}
+
+		for (int i = 1; i <= users.size(); i++) {
+			row = sheet.createRow(i);
+//			for(int j=0;j<Header.length;j++)
+//			{
+				row.createCell(0).setCellValue(users.get(i-1).getId());
+				row.createCell(1).setCellValue(users.get(i-1).getName());
+				row.createCell(2).setCellValue(users.get(i-1).getEmail());
+				row.createCell(3).setCellValue(users.get(i-1).getMobile());
+				row.createCell(4).setCellValue(users.get(i-1).getDob());
+				row.createCell(5).setCellValue(users.get(i-1).getGender());
+				row.createCell(6).setCellValue(users.get(i-1).getQualification());
+				row.createCell(7).setCellValue(users.get(i-1).getPassword());
+//			}
+	}
+			
+		 Random random = new Random();
+		 int number = random.nextInt(1000000000);
+
+		String path="C:\\Users\\canncopierservicepvt\\Desktop\\Excel files\\taskExcelCss.xls";
+
+		try (FileOutputStream fileOut = new FileOutputStream(path)) {
+			workbook.write(fileOut);
+			System.out.println("Excel file has been created successfully.");
+			setExcelLink(path);
+			System.out.println("Genrate_ExcelFile end");
+			return "success";
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "";
+		
+	}
+}

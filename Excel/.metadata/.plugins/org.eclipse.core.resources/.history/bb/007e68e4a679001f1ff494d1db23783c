@@ -1,0 +1,8 @@
+package org.jsp;
+
+public class Student {
+	int id;
+	String name;
+	String mobile;
+	
+}

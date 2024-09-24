@@ -1,0 +1,32 @@
+package register;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+public class GetAllUsers {
+	private List<User> users;
+
+	public List<User> getUsers() throws IOException {
+		System.out.println(3333);
+		Get get=new Get();
+		File currentDir = new File (".");
+		String basePath = currentDir.getCanonicalPath();
+		System.out.println(basePath);
+		return get.getAll();
+		
+	}
+
+	public void setUsers(List<User> users) {
+		System.out.println(111111);
+		this.users = users;
+	}
+	
+	public String getAllUsers()
+	{
+		System.out.println(222222);
+		
+		
+		return "success";
+	}
+}
