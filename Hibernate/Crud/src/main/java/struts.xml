@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+
+	<package name="abcd" extends="struts-default , json-default">
+		<action name="loginForm" class="com.org.Register"
+			method="register">
+			<result name="success">login.jsp</result>
+		</action>
+
+		<action name="getalluser" class="com.org.Login" method="login">
+			<result name="success">allUser.jsp</result>
+		</action>
+
+		<action name="viewAll" class="com.org.Get" method="getAll">
+			<result name="success">allUser.jsp</result>
+		</action>
+
+		<action name="deleteUser" class="com.org.DeleteUser"
+			method="deleteUser">
+			<result name="success">allUser.jsp</result>
+		</action>
+
+		<action name="editUser" class="com.org.EditUser"
+			method="editUser">
+			<result name="success">update.jsp</result>
+		</action>
+
+		<action name="updateUser" class="com.org.Update"
+			method="updateUser">
+			<result name="success">allUser.jsp</result>
+		</action>
+
+		<action name="back">
+			<result>index.jsp</result>
+		</action>
+
+
+
+		<action name="viewAll" class="com.org.GetAllUsers"
+			method="getAllUsers">
+			<result name="success">allUser.jsp</result>
+		</action>
+		
+		<action name="search" class="com.org.SearchFunction"
+			method="search">
+			<result name="success" type="json"></result>
+		</action>
+		
+		<action name="getExcelFile" class="com.org.Genrate_ExcelFile"
+			method="genrateExcel">
+			<result name="success" type="json"></result>
+		</action>
+		
+
+
+
+	</package>
+</struts>
