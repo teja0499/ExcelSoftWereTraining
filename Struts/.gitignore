@@ -1,1 +1,48 @@
-/.metadata/
+# Compiled class files
+*.class
+
+# JAR files
+*.jar
+lib/
+
+# Maven files
+target/
+*.pom
+*.war
+
+# Gradle files
+.gradle/
+build/
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+out/
+
+# Eclipse files
+.settings/
+.project
+.classpath
+bin/
+.metadata/
+
+# NetBeans files
+nbproject/
+build/
+dist/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Coverage files
+*.exec
+*.jacoco.exec
