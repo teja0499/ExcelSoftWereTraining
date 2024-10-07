@@ -38,7 +38,7 @@ pageEncoding="UTF-8"%> <%@taglib uri="/struts-tags" prefix="s"%>
 
       thead,
       th {
-        position: sticky;
+        position: static;
         top: 0;
         background: #abdd93;
       }

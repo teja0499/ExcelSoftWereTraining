@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+
+	<package name="helyloworld"
+		extends="struts-default,json-default">
+
+
+		<action name="first-page"
+			class="org.jsp.controller.SendingLocation"
+			method="getSendingLocation">
+			<result name="success">FirstPage.jsp</result>
+		</action>
+
+
+		<action name="summery" class="org.jsp.controller.Summery"
+			method="Summery">
+			<result name="success">summery.jsp</result>
+		</action>
+
+		<action name="details" class="org.jsp.controller.Details"
+			method="details">
+			<result name="success">details.jsp</result>
+		</action>
+
+
+
+
+
+
+
+
+
+
+
+		<action name="sending-location"
+			class="org.jsp.controller.SendingLocation"
+			method="getSendingLocation">
+			<result name="success" type="json">FirstPage.jsp</result>
+		</action>
+
+
+		<action name="receiving-location"
+			class="org.jsp.controller.ReceivingLoction"
+			method="getReceivingLoction">
+			<result name="success" type="json">FirstPage.jsp</result>
+		</action>
+
+
+
+
+		<action name="Sending-Stock-Point"
+			class="org.jsp.controller.SendingStockPoint"
+			method="getSendingStockPoint">
+			<result name="success" type="json">FirstPage.jsp</result>
+		</action>
+
+		<action name="receiving-Stock-Point"
+			class="org.jsp.controller.ReceivingStockPoint"
+			method="getReceivingStockPoint">
+			<result name="success" type="json">FirstPage.jsp</result>
+		</action>
+
+
+
+		<action name="financial-Years"
+			class="org.jsp.controller.Financial_Year" method="getFinancialYear">
+			<result name="success" type="json">FirstPage.jsp</result>
+		</action>
+
+
+
+	</package>
+</struts>
