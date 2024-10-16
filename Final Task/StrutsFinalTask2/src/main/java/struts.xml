@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+
+	<package name="helyloworld"
+		extends="struts-default,json-default">
+
+
+		<action name="home"
+			class="org.jsp.controller.OnLoad"
+			method="getFinancialYear">
+			<result name="success">home.jsp</result>
+		</action>
+		
+		<action name="details"
+			class="org.jsp.controller.Details"
+			method="details">
+			<result name="success">details.jsp</result>
+		</action>
+		
+		
+		
+		
+		
+		
+		
+			<action name="get-StockPoint"
+			class="org.jsp.controller.StockPoint"
+			method="getStockPoint">
+			<result name="success" type="json"></result>
+		</action>
+		
+		
+		<action name="get-party"
+			class="org.jsp.controller.Party"
+			method="getParty">
+			<result name="success" type="json"></result>
+		</action>
+
+		
+
+
+
+	</package>
+</struts>
