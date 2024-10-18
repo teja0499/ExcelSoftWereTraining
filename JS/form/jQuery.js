@@ -3,7 +3,6 @@ $(document).ready(function () {
     form.reset();
   });
 
-
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, "0");
   var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -14,7 +13,7 @@ $(document).ready(function () {
 
   function isValidMobile(mob) {
     return mobileFilter.test(mob);
-}
+  }
 
   $("#mobile").on("input", function () {
     const mob = $("#mobile").val();
@@ -28,7 +27,6 @@ $(document).ready(function () {
     // }
     if (!isValidMobile(mob)) {
       $("#invalid-mobile").text("Please enter a valid number");
-      
     } else {
       $("#invalid-mobile").text("");
       $("#mobile").css("background-color", "white");
@@ -37,24 +35,20 @@ $(document).ready(function () {
 
   $("#Name").on("input", function () {
     const mob = $("#Name").val();
-    
+
     if (mob.length === 0) {
       $("#invalid-Name").text("Please enter a valid Name");
     } else {
       $("#invalid-Name").text("");
       $("#Name").css("background-color", "white");
-      
     }
   });
 
   var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-    function isValidEmail(email) {
-        return emailPattern.test(email);
-    }
-
-
-
+  function isValidEmail(email) {
+    return emailPattern.test(email);
+  }
 
   $("#Email").on("input", function () {
     const email = $("#Email").val();
@@ -65,11 +59,8 @@ $(document).ready(function () {
     } else {
       $("#Email").css("background-color", "white");
       $("#invalid-email").text("");
-
     }
   });
-
-
 
   $("#cPassword").on("input", function () {
     const cPassword = $("#cPassword").val();
@@ -82,9 +73,7 @@ $(document).ready(function () {
     }
   });
 
-
   $("#password").on("input", function () {
-    
     const password = $("#password").val();
     const cPassword = $("#cPassword").val();
     if (cPassword !== password) {
@@ -98,56 +87,45 @@ $(document).ready(function () {
     }
   });
 
-  
-
-  $( "#datepicker-1" ).datepicker({
-    maxDate:0
+  $("#datepicker-1").datepicker({
+    maxDate: 0,
   });
-
 
   $("#datepicker-1").on("change", function () {
-      console.log( $("#datepicker-1").val());
-      maxDate: new Date()
-      // $("#invalid-datepicker-1").css("background-color", "white");
-      
-    if (today < $("#datepicker-1").val()) {
-      
-        $("#invalid-datepicker-1").text(`Please select a propar date`);
-      }
-      else{
-        $("#invalid-datepicker-1").text(``);
-        $("#datepicker-1").css("background-color", "white");
-      }
-  });
+    console.log($("#datepicker-1").val());
+    maxDate: new Date();
+    // $("#invalid-datepicker-1").css("background-color", "white");
 
-  $("#Qualification").on("change", function () {
-      
-    if (!$("#Qualification").val()) {
-        $("#invalid-option").text(`Please enter valid qualification`);
-        $("#Qualification").css("background-color", "red");
-      }
-    else{
-        $("#invalid-option").text(``);
-        $("#Qualification").css("background-color", "white");
+    if (today < $("#datepicker-1").val()) {
+      $("#invalid-datepicker-1").text(`Please select a propar date`);
+    } else {
+      $("#invalid-datepicker-1").text(``);
+      $("#datepicker-1").css("background-color", "white");
     }
   });
 
+  $("#Qualification").on("change", function () {
+    if (!$("#Qualification").val()) {
+      $("#invalid-option").text(`Please enter valid qualification`);
+      $("#Qualification").css("background-color", "red");
+    } else {
+      $("#invalid-option").text(``);
+      $("#Qualification").css("background-color", "white");
+    }
+  });
 
   $("#flexRadio").on("change", function () {
-      
     if ($('input[name="flexRadioDefault"]:checked').val()) {
       $("#invalid-gender").text(``);
-      }
-
+    }
   });
-  
 
   $("#submit").click(function (e) {
     var form = $(".needs-validation")[0];
     e.preventDefault();
 
     if ($("#password").val() === $("#cPassword").val()) {
-        var selectedGender = $('input[name="flexRadioDefault"]:checked').val();
+      var selectedGender = $('input[name="flexRadioDefault"]:checked').val();
       console.log($("#Name").val());
       console.log($("#Email").val());
       console.log($("#mobile").val());
@@ -179,14 +157,13 @@ $(document).ready(function () {
       if (!$('input[name="flexRadioDefault"]:checked').val()) {
         $("#invalid-gender").text(`Please select gender`);
       }
-      
-      if (today < $("#datepicker-1").val())  {
+
+      if (today < $("#datepicker-1").val()) {
         console.log("hi");
         $("#datepicker-1").css("background-color", "red");
         $("#invalid-datepicker-1").text(`Please select a propar date`);
         return;
-      }
-      else{
+      } else {
         $("#invalid-datepicker-1").css("background-color", "white");
       }
       if (!$("#password").val()) {
@@ -196,7 +173,12 @@ $(document).ready(function () {
         $("#invalid-cpassword").text(`Please confirm password`);
         $("#cPassword").css("background-color", "red");
       }
-      if (!isValidMobile($("#mobile").val()) || !isValidEmail($("#Email").val())) {return;}
+      if (
+        !isValidMobile($("#mobile").val()) ||
+        !isValidEmail($("#Email").val())
+      ) {
+        return;
+      }
       if (
         $("#Name").val() &&
         $("#Email").val() &&
