@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- Use update or create for hbm2ddl.auto depending on your need -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+
+		<!-- Oracle driver settings -->
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+
+		<!-- Oracle connection URL, username, and password -->
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@103.165.118.144:1521:excel</property>
+		<property name="hibernate.connection.username">sinkhai_test</property>
+		<property name="hibernate.connection.password">sinkhai_test</property>
+
+		<!-- Correct dialect for Oracle -->
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+
+		<!-- Show SQL queries -->
+		<property name="show_sql">true</property>
+
+		<!-- Mappings -->
+		<mapping class="org.jsp.dto.DEPOT_MASTER" />
+	
+		<mapping class="org.jsp.dto.FINANCIAL_YEAR" />
+		<mapping class="org.jsp.dto.TABLE_PROCEDURE" />
+		<mapping class="org.jsp.dto.PARAMETERS" />
+		
+		<mapping class="org.jsp.dto.STOCKPOINT_MST" />
+			<mapping class="org.jsp.dto.PERIOD_MASTER" />
+
+	</session-factory>
+</hibernate-configuration>
